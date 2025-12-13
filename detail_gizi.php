@@ -14,7 +14,8 @@ $stmt->execute([$slug]);
 $item = $stmt->fetch();
 
 if (!$item) {
-    echo "<h1>Konten tidak ditemukan</h1><a href='gizi.html'>Kembali</a>";
+    header('HTTP/1.0 404 Not Found');
+    echo "<!DOCTYPE html><html><head><meta charset='UTF-8'><title>Konten tidak ditemukan</title></head><body><h1>Konten tidak ditemukan</h1><a href='gizi.html'>Kembali</a></body></html>";
     exit;
 }
 
@@ -133,7 +134,7 @@ function val($v, $default = '-')
             <div class="macro-wrapper">
                 <!-- Energy -->
                 <div class="macro-item <?php echo $item['color'] === 'orange' ? 'orange' : 'green'; ?>">
-                    <span class="macro-value"><?php echo floatval($item['energy']); ?></span>
+                    <span class="macro-value"><?php echo is_numeric($item['energy']) ? floatval($item['energy']) : val($item['energy']); ?></span>
                     <span class="macro-label">KAL</span>
                 </div>
 

@@ -168,34 +168,6 @@ function initDropdowns() {
             });
         }
     });
-
-    // Mobile dropdown functionality
-    const mobileDropdownToggles = document.querySelectorAll('.dropdown-toggle');
-    mobileDropdownToggles.forEach(toggle => {
-        toggle.addEventListener('click', function (e) {
-            if (window.innerWidth <= 900) {
-                e.preventDefault();
-                e.stopPropagation();
-
-                const dropdown = this.closest('.dropdown');
-                const isActive = dropdown.classList.contains('open');
-
-                // Close all other dropdowns in mobile
-                document.querySelectorAll('.dropdown.open').forEach(openDropdown => {
-                    if (openDropdown !== dropdown) {
-                        openDropdown.classList.remove('open');
-                    }
-                });
-
-                // Toggle current dropdown
-                if (isActive) {
-                    dropdown.classList.remove('open');
-                } else {
-                    dropdown.classList.add('open');
-                }
-            }
-        });
-    });
 }
 
 // =========================================================

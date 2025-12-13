@@ -21,6 +21,29 @@ $isMBG = ($user['role'] === 'mbg');
 if ($isMBG) {
     require_once __DIR__ . '/auth/config.php';
 
+    // Auto-create pengaduan table if not exists
+    try {
+        $pdo->exec("
+            CREATE TABLE IF NOT EXISTS pengaduan (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                user_id INT NOT NULL,
+                nama_lengkap VARCHAR(255) NOT NULL,
+                nama_sekolah VARCHAR(255) NOT NULL,
+                tanggal_kejadian DATE NOT NULL,
+                jenis_pengaduan VARCHAR(100) NOT NULL,
+                deskripsi TEXT NOT NULL,
+                bukti_path VARCHAR(255) DEFAULT NULL,
+                status ENUM('pending', 'selesai', 'resolved') DEFAULT 'pending',
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                INDEX idx_user_id (user_id),
+                INDEX idx_status (status),
+                INDEX idx_created_at (created_at)
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+        ");
+    } catch (Exception $e) {
+        // Table might already exist, continue
+    }
+
     try {
         $stmt = $pdo->query("
             SELECT 
