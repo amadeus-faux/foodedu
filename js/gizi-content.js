@@ -16,7 +16,7 @@
 
   async function fetchContent(type) {
     try {
-      const BASE = (location.protocol === 'file:' ? 'http://localhost/foodedu/' : (location.origin + '/foodedu/'));
+      const BASE = (location.protocol === 'file:' ? 'http://localhost/foodedu/' : (location.origin + '/'));
       const ABS = (p) => (p.startsWith('http') ? p : BASE + p.replace(/^\//, ''));
       const url = type ? ABS(`api/gizi_content.php?type=${encodeURIComponent(type)}&t=${Date.now()}`) : ABS('api/gizi_content.php?t=' + Date.now());
       const res = await fetch(url, {

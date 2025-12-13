@@ -258,7 +258,7 @@
     // Check if signupForm/loginForm is already a form element, otherwise find form inside
     const signupFormEl = signupForm ? (signupForm.tagName === 'FORM' ? signupForm : signupForm.querySelector('form')) : null;
     const loginFormEl = loginForm ? (loginForm.tagName === 'FORM' ? loginForm : loginForm.querySelector('form')) : null;
-    const BASE = (location.protocol === 'file:' ? 'http://localhost/foodedu/' : (location.origin + '/foodedu/'));
+    const BASE = (location.protocol === 'file:' ? 'http://localhost/foodedu/' : (location.origin + '/'));
     const ABS = (p) => (p.startsWith('http') ? p : BASE + p.replace(/^\//,''));
 
     // ===== WELCOME PANEL BUTTON HANDLERS =====
