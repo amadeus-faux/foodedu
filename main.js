@@ -721,7 +721,7 @@ function initAuth() {
 // NAVBAR LOGIN/SIGNUP BUTTONS (for all pages)
 // =========================================================
 function initNavbarAuthButtons() {
-    const BASE = (location.protocol === 'file:' ? 'http://localhost/foodedu/' : (location.origin + '/foodedu/'));
+    const BASE = (location.protocol === 'file:' ? 'http://localhost/foodedu/' : (location.origin + '/'));
     const ABS = (p) => (p.startsWith('http') ? p : BASE + p.replace(/^\//, ''));
     // Use event delegation to handle clicks on login/signup buttons
     // This works even if buttons are added dynamically
